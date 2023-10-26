@@ -32,7 +32,7 @@ setTodos(ar);
 };
 useEffect(() => {
 refreshData();
-}, [user]);
+}, [refreshData, user]);
 const handleTodoDelete = async (id) => {
 if (confirm("Are you sure you wanna delete this todo?")) {
 deleteTodo(id);
