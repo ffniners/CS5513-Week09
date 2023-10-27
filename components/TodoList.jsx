@@ -31,7 +31,7 @@ setTodos(ar);
 });
 };
 useEffect(() => {
-refreshData();
+//refreshData();
 }, [refreshData, user]);
 const handleTodoDelete = async (id) => {
 if (confirm("Are you sure you wanna delete this todo?")) {
