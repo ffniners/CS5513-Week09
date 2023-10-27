@@ -20,7 +20,7 @@ const Home = () => {
       case 'contacts':
         return (<><Auth /><Contacts /> </>); 
       default:
-        return <Auth />;
+        return (<> <h1>Welcome Comrade!!</h1><Auth /></>);
     }
   };
 
