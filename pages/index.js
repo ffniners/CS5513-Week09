@@ -16,7 +16,7 @@ const Home = () => {
       case 'wishlist':
         return (<><Auth /> <Events /> </>);
       case 'todo':
-        return (<> <Auth /><AddTodo /> <TodoList /> </>);
+        return (<> <Auth /><AddTodo /> </>);
       case 'contacts':
         return (<><Auth /><Contacts /> </>); 
       default:
