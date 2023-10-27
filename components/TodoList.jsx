@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import useAuth from "../hooks/useAuth";
 import { FaToggleOff, FaToggleOn, FaTrash } from "react-icons/fa";
-import { fetchDataByUser, updateDocument, deleteDocument, addDocument } from "../utils/Utils";
+import { fetchDataByUser, updateDocument, deleteDocument, addDocument } from "../utils/utils";
 
 const TodoList = () => {
     const [todos, setTodos] = React.useState([]);
