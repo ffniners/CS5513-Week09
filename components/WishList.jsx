@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Input, Button, Stack, useToast, Text } from "@chakra-ui/react";
 import useAuth from "../hooks/useAuth";
-import { addEvent, getEventsByUser } from "../api/events"; // Update API imports
+import { addEvent, getEventsByUser } from "../api/wishlist"; // Update API imports
 
 const Events = () => {
     const [eventName, setEventName] = React.useState("");
