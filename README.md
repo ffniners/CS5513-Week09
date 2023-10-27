@@ -27,3 +27,4 @@ You can also produce a production build by running `npm run build` and [changing
 
   git config --global user.email "you@example.com"
   git config --global user.name "Your Name"
+  d
