@@ -14,11 +14,11 @@ const Home = () => {
   const renderContent = () => {
     switch (selectedTab) {
       case 'wishlist':
-        return <WishList />;
+        return (<><Auth /> <WishList /> </>);
       case 'todo':
-        return (<> <AddTodo /> <TodoList /> </>);
+        return (<> <Auth /><AddTodo /> <TodoList /> </>);
       case 'contacts':
-        return <Contacts />; 
+        return (<><Auth /><Contacts /> </>); 
       default:
         return <Auth />;
     }
