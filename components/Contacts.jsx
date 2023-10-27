@@ -1,48 +1,62 @@
 import React from "react";
-import { Box, Input, Button, Stack, useToast, Badge } from "@chakra-ui/react";
+import {
+    Box,
+    Input,
+    Button,
+    Stack,
+    useToast,
+    Badge
+} from "@chakra-ui/react";
 import useAuth from "../hooks/useAuth";
-import { addEvent, getEventsByUser, updateEvent, deleteEvent } from "../api/wishlist"; // Assuming you'll have deleteEvent in the API
+import { addContact, getContactsByUser, updateContact, deleteContact } from "../api/contacts"; // Assuming you'll have updateContact and deleteContact in the API
 import { FaTrash } from "react-icons/fa";
 
-const Events = () => {
-    const [eventName, setEventName] = React.useState("");
-    const [eventDate, setEventDate] = React.useState("");
-    const [events, setEvents] = React.useState([]);
+const Contacts = () => {
+    const [firstName, setFirstName] = React.useState("");
+    const [lastName, setLastName] = React.useState("");
+    const [email, setEmail] = React.useState("");
+    const [phone, setPhone] = React.useState("");
+    const [contacts, setContacts] = React.useState([]);
+    
     const toast = useToast();
     const { isLoggedIn, user } = useAuth();
 
     React.useEffect(() => {
         if (isLoggedIn) {
-            const unsubscribe = getEventsByUser(user.uid, setEvents);
+            const unsubscribe = getContactsByUser(user.uid, setContacts);
             return () => unsubscribe();
         }
     }, [isLoggedIn, user]);
 
-    const handleEventAdd = async () => {
+    const handleContactAdd = async () => {
         if (!isLoggedIn) {
             return;
         }
-        const eventItem = {
-            eventName,
-            eventDate,
+        const contact = {
+            firstName,
+            lastName,
+            email,
+            phone,
             userId: user.uid,
         };
-        await addEvent(eventItem);
-
-        setEventName("");
-        setEventDate("");
-        toast({ title: "Event added successfully", status: "success" });
+        await addContact(contact);
+        
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPhone("");
+        toast({ title: "Contact added successfully", status: "success" });
     };
 
     const handleFieldChange = async (id, field, value) => {
-        setEvents(prevEvents => prevEvents.map(event => event.id === id ? {...event, [field]: value} : event));
-        await updateEvent(id, { [field]: value });
+        setContacts(prevContacts => prevContacts.map(contact => contact.id === id ? {...contact, [field]: value} : contact));
+        await updateContact(id, { [field]: value }); // Implement updateContact in the API
     };
 
-    const handleEventDelete = async (id) => {
-        if (confirm("Are you sure you wanna delete this event?")) {
-            await deleteEvent(id); // You'll need to implement this deleteEvent method in the API.
-            toast({ title: "Event deleted successfully", status: "success" });
+    const handleContactDelete = async (id) => {
+        if (confirm("Are you sure you wanna delete this contact?")) {
+            await deleteContact(id); // Implement deleteContact in the API
+            toast({ title: "Contact deleted successfully", status: "success" });
         }
     };
 
@@ -50,24 +64,33 @@ const Events = () => {
         <Box w="40%" margin="0 auto" display="block" mt={5}>
             <Stack direction="column">
                 <Input
-                    placeholder="Event Name"
-                    value={eventName}
-                    onChange={(e) => setEventName(e.target.value)}
+                    placeholder="First Name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
                 />
                 <Input
-                    type="date"
-                    placeholder="Event Date"
-                    value={eventDate}
-                    onChange={(e) => setEventDate(e.target.value)}
+                    placeholder="Last Name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
                 />
-                <Button onClick={handleEventAdd}>
-                    Add Event
+                <Input
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <Input
+                    placeholder="Phone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                />
+                <Button onClick={handleContactAdd}>
+                    Add Contact
                 </Button>
             </Stack>
             <Box mt={5}>
-                {events.map(event => (
+                {contacts.map(contact => (
                     <Box
-                        key={event.id}
+                        key={contact.id}
                         p={3}
                         mt={4}
                         boxShadow="2xl"
@@ -76,13 +99,20 @@ const Events = () => {
                         _hover={{ boxShadow: "sm" }}
                     >
                         <Input
-                            value={event.eventName}
-                            onChange={(e) => handleFieldChange(event.id, "eventName", e.target.value)}
+                            value={contact.firstName}
+                            onChange={(e) => handleFieldChange(contact.id, "firstName", e.target.value)}
                         />
                         <Input
-                            type="date"
-                            value={event.eventDate}
-                            onChange={(e) => handleFieldChange(event.id, "eventDate", e.target.value)}
+                            value={contact.lastName}
+                            onChange={(e) => handleFieldChange(contact.id, "lastName", e.target.value)}
+                        />
+                        <Input
+                            value={contact.email}
+                            onChange={(e) => handleFieldChange(contact.id, "email", e.target.value)}
+                        />
+                        <Input
+                            value={contact.phone}
+                            onChange={(e) => handleFieldChange(contact.id, "phone", e.target.value)}
                         />
                         <Badge
                             color="red.500"
@@ -94,7 +124,7 @@ const Events = () => {
                             }}
                             float="right"
                             size="xs"
-                            onClick={() => handleEventDelete(event.id)}
+                            onClick={() => handleContactDelete(contact.id)}
                         >
                             <FaTrash />
                         </Badge>
@@ -105,7 +135,8 @@ const Events = () => {
     );
 };
 
-export default Events;
+export default Contacts;
+
 
 /*
 import React from "react";
