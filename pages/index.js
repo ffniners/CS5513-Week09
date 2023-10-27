@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 import Auth from '../components/Auth';
 import AddTodo from '../components/AddTodo'; 
 import TodoList from '../components/TodoList';
-import WishList from '../components/WishList';
+import Events from '../components/WishList';
 import Contacts from '../components/Contacts'; 
 
 const Home = () => {
@@ -14,7 +14,7 @@ const Home = () => {
   const renderContent = () => {
     switch (selectedTab) {
       case 'wishlist':
-        return (<><Auth /> <WishList /> </>);
+        return (<><Auth /> <Events /> </>);
       case 'todo':
         return (<> <Auth /><AddTodo /> <TodoList /> </>);
       case 'contacts':

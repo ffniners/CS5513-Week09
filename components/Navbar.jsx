@@ -19,7 +19,7 @@ const Navbar = ({ setSelectedTab, selectedTab }) => {
           onClick={() => setSelectedTab('wishlist')}
           color={selectedTab === 'wishlist' ? 'white' : 'gray.200'}
         >
-          <Text>Wishlist</Text>
+          <Text>Events</Text>
         </Box>
         <Box
           cursor="pointer"
