@@ -7,7 +7,7 @@ import {
     addDocument,
     updateDocument,
     deleteDocument
-} from "../util/util";  // import the utility functions
+} from "../util/util"; 
 
 const Events = () => {
     const [eventName, setEventName] = React.useState("");
@@ -117,7 +117,7 @@ export default Events;
 import React from "react";
 import { Box, Input, Button, Stack, useToast, Badge } from "@chakra-ui/react";
 import useAuth from "../hooks/useAuth";
-import { addEvent, getEventsByUser, updateEvent, deleteEvent } from "../api/wishlist"; // Assuming you'll have deleteEvent in the API
+import { addEvent, getEventsByUser, updateEvent, deleteEvent } from "../api/wishlist"; 
 import { FaTrash } from "react-icons/fa";
 
 const Events = () => {
@@ -157,7 +157,7 @@ const Events = () => {
 
     const handleEventDelete = async (id) => {
         if (confirm("Are you sure you wanna delete this event?")) {
-            await deleteEvent(id); // You'll need to implement this deleteEvent method in the API.
+            await deleteEvent(id); 
             toast({ title: "Event deleted successfully", status: "success" });
         }
     };

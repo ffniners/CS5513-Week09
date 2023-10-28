@@ -10,7 +10,7 @@ export const fetchDataByUser = (collectionName, userId, setData) => {
         });
         setData(data);
     });
-    return unsubscribe; // Useful for cleanup in useEffect
+    return unsubscribe; 
 };
 
 export const updateDocument = (collectionName, docId, data) => {

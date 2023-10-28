@@ -28,7 +28,7 @@ const getContactsByUser = (userId, setContacts) => {
         setContacts(contactsData);
     });
 
-    return unsubscribe; // for cleanup
+    return unsubscribe; 
 };
 
 export { addContact, getContactsByUser };
